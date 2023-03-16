@@ -1,30 +1,21 @@
 import React from "react";
-import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip} from "recharts";
+import {LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, AreaChart, Area, Legend} from "recharts";
 import {PriceLineChartType} from "../App";
 import data from './data.json'
 
 export default function PriceLineChart(props: { data: Array<PriceLineChartType> }) {
     const list:Array<PriceLineChartType> = []
-    for (let i = 0; i < 300; i++) {
+    for (let i = 0; i < data.length; i++) {
         list.push({
             price: data[i].price,
-            time: new Date(data[i].time).toLocaleString()
+            time: new Date(data[i].time).toLocaleString().split(' ')[1]
         })
     }
-    console.log(list)
     return <>
-        <LineChart width={1000} height={400} data={list} margin={{ top: 5, right: 100, bottom: 100, left: 0 }}>
-            <Line type="monotone" dataKey="price" stroke="#8884d8"/>
-            {/*<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />*/}
-            <XAxis dataKey="time" interval={40} angle={50} dx={40} dy={50}/>
-            <YAxis />
-            <Tooltip />
-        </LineChart>
         <LineChart width={1000} height={400} data={list} margin={{ top: 5, right: 10, bottom: 100, left: 20 }}>
-            <Line type="monotone" dataKey="price" stroke="#8884d8"/>
-            {/*<CartesianGrid stroke="#ccc" strokeDasharray="5 5" />*/}
-            <XAxis dataKey="time" interval={90}/>
-            <YAxis />
+            <Line type="monotone" dataKey="price" stroke="#8884d8" dot={false}/>
+            <XAxis dataKey="time" interval={59}/>
+            <YAxis domain={[20550, 20580]}/>
             <Tooltip />
         </LineChart>
     </>

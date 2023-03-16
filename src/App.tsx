@@ -2,8 +2,8 @@ import React from 'react';
 import PriceLineChart from "./PriceLineChart";
 
 export interface PriceLineChartType {
-    price: number,
-    time: string | number | Date
+    price?: number,
+    time?: string | number | Date
 }
 
 
